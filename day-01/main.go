@@ -75,5 +75,11 @@ func main() {
 		return inventories[i].Calories > inventories[j].Calories
 	})
 
-	fmt.Printf("%#v\n", inventories[0])
+	fmt.Printf("Top 1 Calories: %d (%#v)\n", inventories[0].Calories, inventories[0].Items)
+
+	var topThreeCaloriesSum int64 = 0
+	for i := 0; i < 3; i++ {
+		topThreeCaloriesSum += inventories[i].Calories
+	}
+	fmt.Printf("Top 3 Calories total: %d\n", topThreeCaloriesSum)
 }

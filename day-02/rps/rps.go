@@ -1,21 +1,5 @@
 package rps
 
-type Move int
-
-const (
-	Rock Move = iota + 1
-	Paper
-	Scissors
-)
-
-type Outcome int
-
-const (
-	Loss = iota
-	Draw = 3
-	Win  = 6
-)
-
 var OPPONENT_MAP map[string]Move = map[string]Move{
 	"A": Rock,
 	"B": Paper,

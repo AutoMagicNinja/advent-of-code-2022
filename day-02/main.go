@@ -38,11 +38,11 @@ func main() {
 		eachLine = strings.TrimSpace(eachLine)
 		parts := strings.Split(eachLine, " ")
 		if len(parts) != 2 {
-			log.Println(fmt.Sprintf("incorrect number of parts on line %d: %#v", lineno, eachLine))
+			log.Printf("incorrect number of parts on line %d: %#v", lineno, eachLine)
 			continue
 		}
 
-		if result := rps.Play(parts[0], parts[1]); result > 0 {
+		if result := rps.RequireOutcome(parts[0], parts[1]); result > 0 {
 			totalScore += result
 		} else {
 			panic(fmt.Sprintf("invalid score (%d) on line %d: %#v", result, lineno, eachLine))

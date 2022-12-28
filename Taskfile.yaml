@@ -1,0 +1,38 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  BIN_NAME: a.out
+
+tasks:
+  default:
+    cmds:
+      - { task: build }
+      - { task: test }
+    silent: true
+
+  build:
+    cmds:
+      - go mod tidy
+      - go get -u -t ./...
+      - go vet ./...
+      - go build -o "{{.BIN_NAME}}"
+    sources:
+      - "*.go"
+      - "**/*.go"
+
+  test:
+    deps:
+      - build
+    cmds:
+      - go test ./...
+    sources:
+      - "*_test.go"
+      - "**/*_test.go"
+
+  run:
+    deps:
+      - build
+    cmds:
+      - "./{{.BIN_NAME}}"

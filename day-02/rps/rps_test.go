@@ -20,15 +20,15 @@ func Test_GameLogic(T *testing.T) {
 }
 
 func Test_ScoreLogic(T *testing.T) {
-	assert.Equal(T, int(Win+Rock), Play("C", "X"))
-	assert.Equal(T, int(Win+Paper), Play("A", "Y"))
-	assert.Equal(T, int(Win+Scissors), Play("B", "Z"))
+	assert.Equal(T, int(Win)+int(Rock), Play("C", "X"))
+	assert.Equal(T, int(Win)+int(Paper), Play("A", "Y"))
+	assert.Equal(T, int(Win)+int(Scissors), Play("B", "Z"))
 
-	assert.Equal(T, int(Draw+Rock), Play("A", "X"))
-	assert.Equal(T, int(Draw+Paper), Play("B", "Y"))
-	assert.Equal(T, int(Draw+Scissors), Play("C", "Z"))
+	assert.Equal(T, int(Draw)+int(Rock), Play("A", "X"))
+	assert.Equal(T, int(Draw)+int(Paper), Play("B", "Y"))
+	assert.Equal(T, int(Draw)+int(Scissors), Play("C", "Z"))
 
-	assert.Equal(T, int(Loss+Scissors), Play("A", "Z"))
-	assert.Equal(T, int(Loss+Rock), Play("B", "X"))
-	assert.Equal(T, int(Loss+Paper), Play("C", "Y"))
+	assert.Equal(T, int(Loss)+int(Scissors), Play("A", "Z"))
+	assert.Equal(T, int(Loss)+int(Rock), Play("B", "X"))
+	assert.Equal(T, int(Loss)+int(Paper), Play("C", "Y"))
 }

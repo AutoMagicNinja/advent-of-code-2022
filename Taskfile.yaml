@@ -27,6 +27,7 @@ tasks:
   build:
     cmds:
       - { task: deps }
+      - find . -type d -exec bash -c 'cd {} && go generate' \;
       - go build -o "{{.BIN_NAME}}"
     sources:
       - "*.go"

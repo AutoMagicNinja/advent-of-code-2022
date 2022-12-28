@@ -3,7 +3,7 @@
 version: '3'
 
 vars:
-  BIN_NAME: a.out
+  BIN_NAME: advent
 
 tasks:
   default:
@@ -12,11 +12,18 @@ tasks:
       - { task: test }
     silent: true
 
-  build:
+  deps:
     cmds:
       - go mod tidy
       - go get -u -t ./...
       - go vet ./...
+    sources:
+      - "*.go"
+      - "**/*.go"
+
+  build:
+    cmds:
+      - { task: deps }
       - go build -o "{{.BIN_NAME}}"
     sources:
       - "*.go"
@@ -35,4 +42,4 @@ tasks:
     deps:
       - build
     cmds:
-      - "./{{.BIN_NAME}}"
+      - ./{{.BIN_NAME}} {{.CLI_ARGS}}

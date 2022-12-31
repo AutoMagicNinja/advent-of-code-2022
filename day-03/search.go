@@ -21,10 +21,27 @@ func findMisplaced(rucksack string) rune {
 	firstCompartmentUnique := set.FromSlice(items[:count/2])
 	secondCompartmentUnique := set.FromSlice(items[count/2:])
 
-	diff := set.Union(firstCompartmentUnique, secondCompartmentUnique)
+	diff := set.Union(firstCompartmentUnique, secondCompartmentUnique).ToSlice()
 	if len(diff) != 1 {
 		return SEARCH_ERROR
 	}
 
 	return diff[0]
+}
+
+func findBadge(elf1, elf2, elf3 string) rune {
+	var (
+		badge []rune
+		union *set.Set
+	)
+	union = set.Union(
+		set.FromSlice([]rune(elf1)),
+		set.FromSlice([]rune(elf2)),
+	)
+	badge = set.Union(
+		union,
+		set.FromSlice([]rune(elf3)),
+	).ToSlice()
+
+	return badge[0]
 }

@@ -5,7 +5,7 @@
 !*file
 
 # backups
-* copy*.*
+* copy*
 *.bak
 *.sav
 *.orig

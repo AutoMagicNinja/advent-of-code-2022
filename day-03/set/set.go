@@ -23,21 +23,21 @@ func (s Set) ToSlice() []rune {
 	return result
 }
 
-func Difference(a, b *Set) []rune {
-	results := []rune{}
+func Difference(a, b *Set) *Set {
+	results := New()
 	for k := range *a {
 		if _, found := (*b)[k]; !found {
-			results = append(results, k)
+			(*results)[k] = true
 		}
 	}
 	return results
 }
 
-func Union(a, b *Set) []rune {
-	results := []rune{}
+func Union(a, b *Set) *Set {
+	results := New()
 	for k := range *a {
 		if _, found := (*b)[k]; found {
-			results = append(results, k)
+			(*results)[k] = true
 		}
 	}
 	return results

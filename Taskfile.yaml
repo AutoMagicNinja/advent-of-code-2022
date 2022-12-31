@@ -1,6 +1,9 @@
 # https://taskfile.dev
 
-version: '3'
+version: "3"
+
+output: prefixed
+silent: false
 
 vars:
   BIN_NAME: advent
@@ -14,6 +17,13 @@ tasks:
       - { task: build }
       - { task: test }
     silent: true
+
+  new-day:
+    cmds:
+      - cp -av _template {{.CLI_ARGS}}
+      - cd {{.CLI_ARGS}} && go mod init {{.GOPRIVATE}}/{{.CLI_ARGS}}
+    generates:
+      - "{{.CLI_ARGS}}"
 
   deps:
     cmds:
@@ -38,6 +48,7 @@ tasks:
       - build
     cmds:
       - go test ./...
+      - ./{{.BIN_NAME}} --input test.txt
     sources:
       - "*_test.go"
       - "**/*_test.go"
@@ -46,4 +57,5 @@ tasks:
     deps:
       - build
     cmds:
-      - ./{{.BIN_NAME}} {{.CLI_ARGS}}
+      # - ./{{.BIN_NAME}} {{.CLI_ARGS}}
+      - ./{{.BIN_NAME}} --input input.txt

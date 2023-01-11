@@ -14,6 +14,20 @@ func init() {
 	flag.StringVar(&inputFilename, "input", "", "Input filename")
 }
 
+func firstStar(lines []string) {
+	var answer int
+	for lineNumber, eachLine := range lines {
+	}
+	log.Printf("first star: %d", answer)
+}
+
+// func secondStar(lines []string) {
+// 	var answer int
+// 	for lineNumber, eachLine := range lines {
+// 	}
+// 	log.Printf("second star: %d", answer)
+// }
+
 func main() {
 	var (
 		err     error
@@ -30,7 +44,7 @@ func main() {
 		panic(err)
 	}
 
-	lines = strings.Split(string(rawData), "\n")
-	for lineNumber, eachLine := range lines {
-	}
+	lines = strings.Split(strings.TrimSpace(string(rawData)), "\n")
+	firstStar(lines)
+	// secondStar(lines)
 }

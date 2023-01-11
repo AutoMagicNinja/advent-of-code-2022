@@ -28,7 +28,24 @@ func firstStar(lines []string) {
 			answer += 1
 		}
 	}
-	log.Printf("total: %d", answer)
+	log.Printf("first star: %d", answer)
+}
+
+func secondStar(lines []string) {
+	var answer int = 0
+	for lineNumber, eachLine := range lines {
+		pair, err := NewPair(eachLine)
+		if err != nil {
+			log.Printf("error on line %d: %s", lineNumber+1, err.Error())
+			continue
+		}
+		a, b := pair[0], pair[1]
+		if a.Overlaps(b) {
+			// log.Printf("line overlaps: %s", eachLine)
+			answer += 1
+		}
+	}
+	log.Printf("second star: %d", answer)
 }
 
 func main() {
@@ -49,4 +66,5 @@ func main() {
 
 	lines = strings.Split(strings.TrimSpace(string(rawData)), "\n")
 	firstStar(lines)
+	secondStar(lines)
 }

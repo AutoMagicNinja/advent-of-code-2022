@@ -42,7 +42,7 @@ func ResetLevel(logLevel zapcore.Level) zap.SugaredLogger {
 
 func ResetEncoder(encoder zapcore.Encoder) zap.SugaredLogger {
 	Logger = *zap.New(
-		zapcore.NewCore(ZapLogEncoderHuman, zapcore.AddSync(os.Stdout), Logger.Level),
+		zapcore.NewCore(ZapLogEncoderHuman, zapcore.AddSync(os.Stdout), Logger.Level()),
 	).Sugar()
 	return Logger
 }

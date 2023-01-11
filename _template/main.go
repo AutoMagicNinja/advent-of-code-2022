@@ -1,14 +1,19 @@
 package main
 
 import (
-	"log"
 	"strings"
+
+	"github.com/automagicninja/advent-of-code-2022/logger"
+	"go.uber.org/zap/zapcore"
 
 	"github.com/spf13/afero"
 	flag "github.com/spf13/pflag"
 )
 
-var inputFilename string
+var (
+	log           = logger.ResetLevel(zapcore.DebugLevel)
+	inputFilename string
+)
 
 func init() {
 	flag.StringVar(&inputFilename, "input", "", "Input filename")
@@ -18,14 +23,14 @@ func firstStar(lines []string) {
 	var answer int
 	for lineNumber, eachLine := range lines {
 	}
-	log.Printf("first star: %d", answer)
+	log.Infof("first star: %d", answer)
 }
 
 // func secondStar(lines []string) {
 // 	var answer int
 // 	for lineNumber, eachLine := range lines {
 // 	}
-// 	log.Printf("second star: %d", answer)
+// 	log.Infof("second star: %d", answer)
 // }
 
 func main() {
@@ -37,7 +42,7 @@ func main() {
 	)
 
 	flag.Parse()
-	log.Printf("input filename: %#v\n", inputFilename)
+	log.Debugf("input filename: %#v\n", inputFilename)
 
 	rawData, err = afero.ReadFile(inputFs, inputFilename)
 	if err != nil {

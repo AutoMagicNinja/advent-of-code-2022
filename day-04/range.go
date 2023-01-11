@@ -52,3 +52,14 @@ func NewPair(pairDefinition string) ([]*SectionRange, error) {
 func (sr SectionRange) Contains(osr *SectionRange) bool {
 	return (sr.Start <= osr.Start) && (sr.End >= osr.End)
 }
+
+func (sr SectionRange) isWithin(point int) bool {
+	return (sr.Start <= point) && (point <= sr.End)
+}
+
+func (sr SectionRange) Overlaps(osr *SectionRange) bool {
+	return sr.isWithin(osr.Start) || // osr's Start is somewhere within sr
+		sr.isWithin(osr.End) || // osr's End is somewhere within sr
+		osr.isWithin(sr.Start) || // or vice-versa
+		osr.isWithin(sr.End)
+}

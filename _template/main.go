@@ -3,19 +3,18 @@ package main
 import (
 	"strings"
 
-	"github.com/automagicninja/advent-of-code-2022/logger"
-	"go.uber.org/zap/zapcore"
+	log "github.com/automagicninja/advent-of-code-2022/logger"
 
 	"github.com/spf13/afero"
 	flag "github.com/spf13/pflag"
 )
 
 var (
-	log           = logger.ResetLevel(zapcore.DebugLevel)
 	inputFilename string
 )
 
 func init() {
+	log.SetLevel(log.DebugLevel)
 	flag.StringVar(&inputFilename, "input", "", "Input filename")
 }
 
